@@ -1,0 +1,5 @@
+Model,MAE,RMSE,MAPE
+Baseline STGNN,14.2,22.1,0.18
++ Motif Embeddings,12.0,19.4,0.15
++ Causal Filtering,13.5,21.0,0.17
+Full Pipeline (ours),10.9,17.2,0.12

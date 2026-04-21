@@ -1,0 +1,6 @@
+Dataset/
+*.csv
+*.png
+!final_evaluation_charts.png
+!results_table.csv
+.ipynb_checkpoints/
