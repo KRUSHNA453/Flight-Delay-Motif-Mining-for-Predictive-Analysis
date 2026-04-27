@@ -4,3 +4,8 @@ Dataset/
 !final_evaluation_charts.png
 !results_table.csv
 .ipynb_checkpoints/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.DS_Store
