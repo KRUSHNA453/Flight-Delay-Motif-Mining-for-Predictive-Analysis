@@ -79,6 +79,38 @@ def load_results() -> pd.DataFrame:
 
 
 @st.cache_data(show_spinner=False)
+def load_model_comparison() -> pd.DataFrame:
+    """Load the final model comparison table if it exists.
+
+    Falls back to the original ablation table so the dashboard still works
+    before the notebook has generated the final comparison artifact.
+    """
+    path = _project_path("model_comparison.csv")
+    if os.path.exists(path):
+        df = pd.read_csv(path)
+    else:
+        df = load_results()
+    df.columns = [c.strip() for c in df.columns]
+    return df
+
+
+@st.cache_data(show_spinner=False)
+def load_feature_importance() -> pd.DataFrame:
+    """Load Random Forest feature importance results if available."""
+    path = _project_path("feature_importance.csv")
+    if not os.path.exists(path):
+        return pd.DataFrame(columns=["feature", "importance"])
+    df = pd.read_csv(path)
+    df.columns = [c.strip() for c in df.columns]
+    return df
+
+
+def get_model_comparison_chart_path() -> str:
+    """Return the path to the final model comparison PNG."""
+    return _project_path("model_comparison.png")
+
+
+@st.cache_data(show_spinner=False)
 def load_weather() -> pd.DataFrame:
     """Load weather_meteo_by_airport.csv."""
     path = _dataset_path("weather_meteo_by_airport.csv")
